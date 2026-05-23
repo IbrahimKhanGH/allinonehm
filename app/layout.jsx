@@ -19,8 +19,7 @@ const sans = Inter({
 export const metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default:
-      "All In One Home Management | Commercial Buildouts & Renovation in DFW",
+    default: "All In One Home Management | Commercial Buildouts in DFW",
     template: "%s | All In One Home Management",
   },
   description:
@@ -41,7 +40,7 @@ export const metadata = {
     locale: "en_US",
     url: site.url,
     siteName: site.name,
-    title: "All In One Home Management | From Empty Shell to Finished Space",
+    title: "All In One Home Management | Commercial Buildouts in DFW",
     description:
       "Commercial buildouts, investor remodels, concrete, roofing, and turnkey renovation projects across Dallas–Fort Worth.",
     images: [
@@ -55,7 +54,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "All In One Home Management | From Empty Shell to Finished Space",
+    title: "All In One Home Management | Commercial Buildouts in DFW",
     description:
       "Commercial buildouts, investor remodels, concrete, roofing, and turnkey renovation across Dallas–Fort Worth.",
     images: ["/og.jpg"],
