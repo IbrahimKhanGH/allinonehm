@@ -6,7 +6,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="border-t border-white/10 bg-charcoal py-24 sm:py-28"
+      className="border-t border-white/10 bg-charcoal py-16 sm:py-20"
     >
       <div className="container-x">
         <SectionHeader

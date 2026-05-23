@@ -7,7 +7,7 @@ export default function Gallery() {
   return (
     <section
       id="projects"
-      className="border-t border-white/10 bg-charcoal py-24 sm:py-28"
+      className="border-t border-white/10 bg-charcoal py-16 sm:py-20"
     >
       <div className="container-x">
         <SectionHeader
@@ -59,19 +59,6 @@ export default function Gallery() {
             </Reveal>
           ))}
         </div>
-
-        <Reveal delay={0.1} className="mt-10">
-          <p className="text-sm text-concrete">
-            Have a project in mind?{" "}
-            <a
-              href="#contact"
-              className="text-bronze underline-offset-4 hover:underline"
-            >
-              Request a quote
-            </a>{" "}
-            and we&apos;ll scope it.
-          </p>
-        </Reveal>
       </div>
     </section>
   );

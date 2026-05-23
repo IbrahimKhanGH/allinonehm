@@ -4,11 +4,11 @@ import { nav, site } from "@/lib/site";
 export default function Footer() {
   return (
     <footer className="border-t border-white/10 bg-ink">
-      <div className="container-x py-16">
+      <div className="container-x pt-16 pb-28 md:pb-16">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           {/* Brand + positioning */}
           <div>
-            <Brand />
+            <Brand imgClassName="h-16 sm:h-20" />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-concrete-light">
               Commercial buildouts, investor remodels, concrete, roofing, and
               turnkey renovation across Dallas–Fort Worth. From empty shell to

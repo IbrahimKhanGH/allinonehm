@@ -4,54 +4,46 @@ import { reasons, site } from "@/lib/site";
 
 export default function WhyChooseUs() {
   return (
-    <section
-      id="why"
-      className="border-t border-white/10 bg-ink py-24 sm:py-28"
-    >
-      <div className="container-x grid grid-cols-1 gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-        {/* Left: heading + rating block */}
+    <section id="why" className="border-t border-white/10 bg-charcoal py-24 sm:py-28">
+      <div className="container-x grid grid-cols-1 gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+        {/* Left: heading + rating */}
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeader
             eyebrow="Why All In One"
             title="Reliable execution, start to finish"
           />
-          <Reveal delay={0.15} className="mt-8">
-            <div className="flex items-center gap-5 border border-white/10 bg-charcoal p-6">
-              <span className="font-display text-5xl font-bold leading-none text-bone">
-                {site.rating}
-              </span>
-              <div>
-                <div className="flex gap-0.5 text-bronze" aria-hidden="true">
-                  {"★★★★★"}
-                </div>
-                <p className="mt-1 text-sm text-concrete-light">
-                  Google rating across DFW projects
-                </p>
+          <Reveal delay={0.15} className="mt-8 flex items-center gap-5">
+            <span className="font-display text-6xl font-bold leading-none text-bone">
+              {site.rating}
+            </span>
+            <div>
+              <div className="flex gap-0.5 text-bronze" aria-hidden="true">
+                ★★★★★
               </div>
+              <p className="mt-1 text-sm text-concrete-light">
+                Google rating across DFW projects
+              </p>
             </div>
           </Reveal>
         </div>
 
-        {/* Right: reasons list */}
-        <div className="grid grid-cols-1 gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2">
+        {/* Right: borderless list, hairline-separated (no boxes) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-x-10">
           {reasons.map((r, i) => (
             <Reveal
               key={r.title}
               delay={(i % 2) * 0.06}
-              className="flex h-full gap-4 bg-charcoal p-7"
+              className="group border-t border-white/10 py-6 first:border-t-0 sm:[&:nth-child(2)]:border-t-0"
             >
-              <span
-                aria-hidden="true"
-                className="mt-1 h-2 w-2 shrink-0 bg-bronze"
-              />
-              <div>
-                <h3 className="font-display text-base font-semibold uppercase leading-tight tracking-tight text-bone">
-                  {r.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-concrete-light">
-                  {r.body}
-                </p>
-              </div>
+              <h3 className="flex items-baseline gap-3 font-display text-base font-semibold uppercase leading-tight tracking-tight text-bone">
+                <span className="text-sm font-medium text-bronze">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {r.title}
+              </h3>
+              <p className="mt-2 pl-8 text-sm leading-relaxed text-concrete-light">
+                {r.body}
+              </p>
             </Reveal>
           ))}
         </div>

@@ -1,28 +1,31 @@
+import Image from "next/image";
 import { site } from "@/lib/site";
 
 /**
- * Text-based brand treatment. Carries the identity instead of the weak logo.
- * `compact` shows the AIOHM monogram mark; the wordmark always renders.
+ * Brand mark — the cream/bronze "All In One Home Management" logo.
+ * Light-on-transparent, so it sits cleanly on the matte-black UI.
  */
-export default function Brand({ className = "", onClick }) {
+export default function Brand({
+  className = "",
+  onClick,
+  imgClassName = "h-10 sm:h-11",
+  priority = false,
+}) {
   return (
     <a
       href="#top"
       onClick={onClick}
-      className={`group flex items-center gap-3 ${className}`}
+      className={`inline-flex items-center ${className}`}
       aria-label={`${site.name} — home`}
     >
-      <span className="grid h-9 w-9 place-items-center border border-white/25 font-display text-[11px] font-semibold uppercase tracking-[0.04em] text-bone transition-colors duration-300 group-hover:border-bronze group-hover:text-bronze">
-        {site.short}
-      </span>
-      <span className="flex flex-col leading-none">
-        <span className="font-display text-[15px] font-semibold uppercase tracking-[0.06em] text-bone sm:text-base">
-          All In One
-        </span>
-        <span className="font-display text-[10px] font-medium uppercase tracking-[0.32em] text-concrete-light">
-          Home Management
-        </span>
-      </span>
+      <Image
+        src="/logo.png"
+        alt={site.name}
+        width={300}
+        height={77}
+        priority={priority}
+        className={`${imgClassName} w-auto`}
+      />
     </a>
   );
 }

@@ -7,7 +7,7 @@ export default function Process() {
   return (
     <section
       id="process"
-      className="relative isolate overflow-hidden border-t border-white/10 bg-ink py-24 sm:py-28"
+      className="relative isolate overflow-hidden border-t border-white/10 bg-ink py-16 sm:py-20"
     >
       {/* faint architectural grid backdrop */}
       <div

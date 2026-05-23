@@ -33,7 +33,11 @@ export default function Header() {
       }`}
     >
       <div className="container-x flex h-[var(--header-h)] items-center justify-between">
-        <Brand onClick={() => setOpen(false)} />
+        <Brand
+          onClick={() => setOpen(false)}
+          priority
+          imgClassName="h-12 sm:h-14"
+        />
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-9 md:flex">

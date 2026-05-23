@@ -1,12 +1,13 @@
+import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import SectionHeader from "@/components/SectionHeader";
-import { serviceCities, serviceMapEmbed, site } from "@/lib/site";
+import { serviceCities, serviceMapImage, site } from "@/lib/site";
 
 export default function ServiceArea() {
   return (
     <section
       id="service-area"
-      className="border-t border-white/10 bg-ink py-24 sm:py-28"
+      className="border-t border-white/10 bg-ink py-16 sm:py-20"
     >
       <div className="container-x">
         <SectionHeader
@@ -16,31 +17,24 @@ export default function ServiceArea() {
         />
 
         <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden border border-white/10 bg-white/10 lg:grid-cols-[1.15fr_0.85fr]">
-          {/* Theme-matched dark map */}
-          <Reveal className="relative min-h-[340px] bg-charcoal sm:min-h-[460px]">
-            <iframe
-              title="All In One Home Management service area — Dallas–Fort Worth Metroplex"
-              src={serviceMapEmbed}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="absolute inset-0 h-full w-full"
-              style={{
-                border: 0,
-                filter:
-                  "grayscale(1) invert(0.92) contrast(0.92) brightness(1.05)",
-              }}
+          {/* Theme-matched dark DFW map (static local image, decorative) */}
+          <Reveal className="relative min-h-[320px] overflow-hidden bg-charcoal sm:min-h-[460px]">
+            <Image
+              src={serviceMapImage}
+              alt="Map of the Dallas–Fort Worth Metroplex service area"
+              fill
+              sizes="(max-width: 1024px) 100vw, 55vw"
+              className="pointer-events-none object-cover [filter:grayscale(1)_invert(0.91)_contrast(0.86)_brightness(1.08)]"
             />
             {/* Subtle edge vignette so the map blends into the matte-black UI */}
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 shadow-[inset_0_0_120px_30px_rgba(11,11,12,0.9)]"
+              className="pointer-events-none absolute inset-0 shadow-[inset_0_0_120px_30px_rgba(11,11,12,0.95)]"
             />
-            <div className="pointer-events-none absolute left-5 top-5">
-              <span className="inline-flex items-center gap-2 bg-ink/80 px-3 py-2 font-display text-[11px] font-medium uppercase tracking-[0.2em] text-bronze backdrop-blur-sm">
-                <span className="h-1.5 w-1.5 bg-bronze" />
-                DFW Coverage
-              </span>
-            </div>
+            <span className="absolute left-5 top-5 inline-flex items-center gap-2 bg-ink/80 px-3 py-2 font-display text-[11px] font-medium uppercase tracking-[0.2em] text-bronze backdrop-blur-sm">
+              <span className="h-1.5 w-1.5 bg-bronze" />
+              DFW Coverage
+            </span>
           </Reveal>
 
           {/* City coverage list */}

@@ -10,11 +10,13 @@ const initial = {
   email: "",
   projectType: "",
   message: "",
+  company: "", // honeypot — must stay empty
 };
 
 export default function Contact() {
   const [form, setForm] = useState(initial);
   const [status, setStatus] = useState("idle"); // idle | submitting | success | error
+  const [errorMsg, setErrorMsg] = useState("");
 
   const update = (key) => (e) =>
     setForm((f) => ({ ...f, [key]: e.target.value }));
@@ -22,25 +24,24 @@ export default function Contact() {
   async function handleSubmit(e) {
     e.preventDefault();
     setStatus("submitting");
-
-    // Structured payload — ready to POST to an API route / email service that
-    // forwards to management@allinonehm.com (e.g. /api/quote, Resend, Formspree).
-    const payload = {
-      to: site.email,
-      submittedAt: new Date().toISOString(),
-      ...form,
-    };
+    setErrorMsg("");
 
     try {
-      // --- Placeholder submit handler ---
-      // Replace this block with a real fetch("/api/quote", { method: "POST", ... })
-      // when the backend / email forwarding is wired up.
-      await new Promise((res) => setTimeout(res, 700));
-      console.log("Quote request:", payload);
+      const res = await fetch("/api/quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Request failed");
+      }
 
       setStatus("success");
       setForm(initial);
     } catch (err) {
+      setErrorMsg(err.message);
       setStatus("error");
     }
   }
@@ -48,7 +49,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="border-t border-white/10 bg-charcoal py-24 sm:py-28"
+      className="border-t border-white/10 bg-charcoal py-16 sm:py-20"
     >
       <div className="container-x">
         {/* Big final CTA */}
@@ -102,6 +103,29 @@ export default function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-5" noValidate>
+                {/* Honeypot — hidden from people, catches bots */}
+                <div
+                  aria-hidden="true"
+                  style={{
+                    position: "absolute",
+                    left: "-9999px",
+                    width: 1,
+                    height: 1,
+                    overflow: "hidden",
+                  }}
+                >
+                  <label htmlFor="company">Company</label>
+                  <input
+                    id="company"
+                    name="company"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={form.company}
+                    onChange={update("company")}
+                  />
+                </div>
+
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                   <Field
                     label="Name"
@@ -178,7 +202,11 @@ export default function Contact() {
 
                 {status === "error" && (
                   <p className="text-sm text-bronze">
-                    Something went wrong. Please call {site.phone} instead.
+                    {errorMsg || "Something went wrong."} Please call{" "}
+                    <a href={site.phoneHref} className="underline">
+                      {site.phone}
+                    </a>{" "}
+                    instead.
                   </p>
                 )}
 

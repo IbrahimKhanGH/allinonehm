@@ -4,11 +4,32 @@
 
 @layer base {
   :root {
-    --header-h: 76px;
+    --header-h: 84px;
+  }
+  @media (min-width: 640px) {
+    :root {
+      --header-h: 96px;
+    }
   }
 
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Lenis momentum scrolling (overrides native smooth when active; falls back
+     to CSS smooth scroll for reduced-motion users where Lenis is disabled) */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
   }
 
   body {
