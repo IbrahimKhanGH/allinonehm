@@ -44,13 +44,21 @@ export const metadata = {
     title: "All In One Home Management | From Empty Shell to Finished Space",
     description:
       "Commercial buildouts, investor remodels, concrete, roofing, and turnkey renovation projects across Dallas–Fort Worth.",
-    images: [{ url: "/projects/exterior-home-evening.png" }],
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "All In One Home Management — From Empty Shell to Finished Space",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "All In One Home Management | From Empty Shell to Finished Space",
     description:
       "Commercial buildouts, investor remodels, concrete, roofing, and turnkey renovation across Dallas–Fort Worth.",
+    images: ["/og.jpg"],
   },
   robots: { index: true, follow: true },
 };
@@ -63,7 +71,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "GeneralContractor",
   name: site.legalName,
-  image: `${site.url}/projects/exterior-home-evening.png`,
+  image: `${site.url}/og.jpg`,
   "@id": site.url,
   url: site.url,
   telephone: site.phone,
