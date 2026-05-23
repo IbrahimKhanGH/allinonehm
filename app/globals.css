@@ -12,24 +12,16 @@
     }
   }
 
+  /* Native smooth scrolling for in-page anchor links (nav, CTAs). This only
+     affects programmatic/anchor jumps — wheel & trackpad scrolling stay fully
+     native, so there's no lag. */
   html {
     scroll-behavior: smooth;
   }
-
-  /* Lenis momentum scrolling (overrides native smooth when active; falls back
-     to CSS smooth scroll for reduced-motion users where Lenis is disabled) */
-  html.lenis,
-  html.lenis body {
-    height: auto;
-  }
-  .lenis.lenis-smooth {
-    scroll-behavior: auto !important;
-  }
-  .lenis.lenis-smooth [data-lenis-prevent] {
-    overscroll-behavior: contain;
-  }
-  .lenis.lenis-stopped {
-    overflow: hidden;
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   body {

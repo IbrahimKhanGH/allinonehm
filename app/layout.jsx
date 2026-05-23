@@ -1,6 +1,5 @@
 import { Oswald, Inter } from "next/font/google";
 import { site } from "@/lib/site";
-import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
 const display = Oswald({
@@ -102,7 +101,6 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <SmoothScroll />
         {children}
       </body>
     </html>
